@@ -1,0 +1,41 @@
+//mongoose and mongo sanbox routes
+
+app.get('/add-blog', (req,res)=>{
+ const blog= new Blog({
+    title:'new blog',
+    snippet:'about my new blog',
+    body:'more about my new blog'
+ });
+ blog.save().then((result)=>{
+    res.send(result)
+ })
+ .catch((err)=>{
+    console.log(err);
+ });
+});
+
+//find al blogs
+
+app.get('/all-blogs',(req,res)=>{
+    Blog.find()
+    .then((result)=>{
+        res.send(result)
+    })
+    .catch((err)=>{
+        console.log(err);
+    });
+})
+
+//find a single blog
+
+app.get('/single-blog',(req,res)=>{
+    Blog.findById('63a3618efabb43e5a7bd6052')
+    .then((result)=>{
+        res.send(result)
+    })
+        .catch((err)=>{
+            console.log(err);
+        });
+    
+})
+
